@@ -5,9 +5,9 @@ set -e
 echo "🚀 Starting environment setup for your Synology Bitcoin Full Node stack"
 
 # === 1. Define default paths ===
-DEFAULT_SLOW="/volume1/data/bitcoin"
-DEFAULT_FAST="/volume2/docker/appdata"
-REPO_URL="https://github.com/magicdude4eva/btc-fullnode-stack.git"
+DEFAULT_SLOW="/opt/bitcoin-node/bitcoin"
+DEFAULT_FAST="/opt/bitcoin-node/appdata"
+REPO_URL="https://github.com/shyd/btc-fullnode-stack.git"
 
 # === 2. Prompt user for mount locations ===
 read -p "📁 Enter slow-storage path (blockchain data) [${DEFAULT_SLOW}]: " DOCKERDATADIR
@@ -17,7 +17,7 @@ read -p "🚀 Enter fast-storage path (docker config) [${DEFAULT_FAST}]: " DOCKE
 DOCKERCONFDIR=${DOCKERCONFDIR:-$DEFAULT_FAST}
 
 # === 3. Get docker user UID/GID ===
-DOCKER_USER="docker"
+DOCKER_USER="dennis"
 PUID=$(id -u "$DOCKER_USER")
 PGID=$(id -g "$DOCKER_USER")
 echo "🔐 Using PUID=$PUID and PGID=$PGID (user: $DOCKER_USER)"
