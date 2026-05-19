@@ -44,13 +44,18 @@ echo "🛠️ Setting ownership and permissions..."
 # Bitcoin
 chown -R "$PUID:$PGID" "${DOCKERCONFDIR}/bitcoin"
 chmod 777 "${DOCKERCONFDIR}/bitcoin"
-chmod 664 "${DOCKERCONFDIR}/bitcoin/"*.{conf,Dockerfile,.dockerignore}
+chmod 664 \
+  "${DOCKERCONFDIR}/bitcoin/"*.conf \
+  "${DOCKERCONFDIR}/bitcoin/Dockerfile" \
+  "${DOCKERCONFDIR}/bitcoin/.dockerignore"
 chmod 700 "${DOCKERCONFDIR}/bitcoin/bitcoin-data"
 
 # Bitcoin Explorer
 chown -R "$PUID:$PGID" "${DOCKERCONFDIR}/bitcoin-explorer"
 chmod 777 "${DOCKERCONFDIR}/bitcoin-explorer"
-chmod 664 "${DOCKERCONFDIR}/bitcoin-explorer/"*.{conf,Dockerfile}
+chmod 664 \
+  "${DOCKERCONFDIR}/bitcoin-explorer/"*.conf \
+  "${DOCKERCONFDIR}/bitcoin-explorer/Dockerfile"
 
 # CKPool (cksolo)
 chown -R "$PUID:$PGID" "${DOCKERCONFDIR}/cksolo"
