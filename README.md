@@ -85,7 +85,7 @@ For best results, especially during initial blockchain sync:
 2. **Download and execute the setup script**:
 
    ```bash
-   curl -sSL https://raw.githubusercontent.com/magicdude4eva/btc-fullnode-stack/main/setup.sh | bash
+   curl -sSL https://raw.githubusercontent.com/shyd/btc-fullnode-stack/shyd/setup.sh | bash
    ```
 
 3. **Follow the prompts**:
