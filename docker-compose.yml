@@ -71,8 +71,8 @@ services:
       - "8332:8332"   # RPC
       - "8333:8333"   # P2P
       - "28332:28332" # ZMQ hashblock
-      - "28333:28333" # ZMQ rawblock      
-      - "28334:28334" # ZMQ rawtx      
+      - "28333:28333" # ZMQ rawblock
+      - "28334:28334" # ZMQ rawtx
     environment:
       <<: *default-env
     volumes:
@@ -101,7 +101,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKERCONFDIR}/bitcoin-explorer/bitcoin-explorer.conf:/app/.env:ro
-      
+
 # CKPool and Proxy
 # https://bitbucket.org/ckolivas/ckpool-solo/src/solobtc/
   ckpool:
@@ -156,8 +156,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKERCONFDIR}/cksolo/logs:/logs:ro
       - ${DOCKERCONFDIR}/ckstats/pgdata:/var/lib/postgresql/data
-      
-# https://github.com/cculianu/Fulcrum            
+
+# https://github.com/cculianu/Fulcrum
   fulcrum:
     profiles: ["mempool"]
     container_name: mempool-fulcrum
