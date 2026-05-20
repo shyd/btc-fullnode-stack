@@ -77,7 +77,7 @@ services:
       <<: *default-env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${DOCKERSTORAGEDIR}/bitcoin:/blocks                           # HDD-mounted blocks
+      - ${DOCKERSTORAGEDIR}/blocks:/blocks                           # HDD-mounted blocks
       - ${DOCKERCONFDIR}/bitcoin/bitcoin.conf:/bitcoin/bitcoin.conf   # NVMe-mounted config
       - ${DOCKERCONFDIR}/bitcoin/bitcoin-data:/bitcoin                # NVMe-mounted chainstate, txindex, config
 
