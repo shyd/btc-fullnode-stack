@@ -37,6 +37,11 @@ if [ ! -d "${DOCKERCONFDIR}/.git" ]; then
 else
   echo "✅ Git repo already exists in $DOCKERCONFDIR – skipping clone"
 fi
+mkdir -p "${DOCKERCONFDIR}/bitcoin/bitcoin-data"
+mkdir -p "${DOCKERCONFDIR}/cksolo/logs"
+mkdir -p "${DOCKERCONFDIR}/ckstats/pgdata"
+mkdir -p "${DOCKERCONFDIR}/fulcrum/data"
+mkdir -p "${DOCKERCONFDIR}/influxdb"
 
 # === 6. Ownership and permissions ===
 echo "🛠️ Setting ownership and permissions..."
@@ -69,8 +74,8 @@ chown -R "$PUID:$PGID" "${DOCKERCONFDIR}/ckstats"
 chmod 777 "${DOCKERCONFDIR}/ckstats"
 chmod 664 "${DOCKERCONFDIR}/ckstats/"{Dockerfile,supervisord.conf,ckstats-cron,.env.template}
 chmod 755 "${DOCKERCONFDIR}/ckstats/startup.sh"
-chown -R 100:103 "${DOCKERCONFDIR}/ckstats/pgdata"
-chmod 700 "${DOCKERCONFDIR}/ckstats/pgdata"
+sudo chown -R 100:103 "${DOCKERCONFDIR}/ckstats/pgdata"
+sudo chmod 700 "${DOCKERCONFDIR}/ckstats/pgdata"
 
 # Fulcrum
 chown -R "$PUID:$PGID" "${DOCKERCONFDIR}/fulcrum"
@@ -80,20 +85,20 @@ chmod 777 "${DOCKERCONFDIR}/fulcrum/data"
 chmod 755 "${DOCKERCONFDIR}/fulcrum/.dockerignore"
 
 # Grafana
-chown -R 472:472 "${DOCKERCONFDIR}/grafana"
-chmod 777 "${DOCKERCONFDIR}/grafana"
+sudo chown -R 472:472 "${DOCKERCONFDIR}/grafana"
+sudo chmod 777 "${DOCKERCONFDIR}/grafana"
 
 # InfluxDB
-chown -R 1000:users "${DOCKERCONFDIR}/influxdb"
-chmod 777 "${DOCKERCONFDIR}/influxdb"
+sudo chown -R 1000:users "${DOCKERCONFDIR}/influxdb"
+sudo chmod 777 "${DOCKERCONFDIR}/influxdb"
 
 # Mempool
-chown -R 1000:users "${DOCKERCONFDIR}/mempool"
-chmod 777 "${DOCKERCONFDIR}/mempool"
+sudo chown -R 1000:users "${DOCKERCONFDIR}/mempool"
+sudo chmod 777 "${DOCKERCONFDIR}/mempool"
 
 # Root files
-chown "$PUID:$PGID" "${DOCKERCONFDIR}/.env" "${DOCKERCONFDIR}/docker-compose.yml"
-chmod 664 "${DOCKERCONFDIR}/.env" "${DOCKERCONFDIR}/docker-compose.yml"
+sudo chown "$PUID:$PGID" "${DOCKERCONFDIR}/.env" "${DOCKERCONFDIR}/docker-compose.yml"
+sudo chmod 664 "${DOCKERCONFDIR}/.env" "${DOCKERCONFDIR}/docker-compose.yml"
 
 # === 7. Generate RPC credentials ===
 echo "🔐 Generating Bitcoin RPC authentication..."
